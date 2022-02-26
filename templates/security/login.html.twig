@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Log in!{% endblock %}
+
+{% block body %}
+
+    <h1 class="h3 mb-3 font-weight-normal">Se connecter</h1>
+
+    <div class="row justify-content-center align-items-center">
+        <div class="col-12 col-lg-9 col-xl-7">
+            <div class="card bg-light darkGreen" style="border-radius: 50px;">
+                <div class="card-body p-4 p-md-5">
+
+                    <form method="post">
+                        {% if error %}
+                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+
+                        {% if app.user %}
+                            <div class="mb-3">
+                                Vous êtes connectés en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                            </div>
+                        {% endif %}
+
+                        <div class="row"> <!--Email + password-->
+                            <div class="col-lg-6 mb-4 pb-2"><!--Email-->
+                                <label class="form-label" for="inputEmail">Adresse e-mail</label>
+                                <input type="email" value="{{ last_username }}"
+                                       name="email"
+                                       id="inputEmail"
+                                       class="form-control"
+                                       autocomplete="email" required autofocus>
+                            </div>
+
+                            <div class="col-lg-6 mb-4 pb-2"><!---Password-->
+                                <label class="form-label" for="inputPassword">Mot de passe</label>
+                                <input type="password"
+                                       name="password"
+                                       id="inputPassword"
+                                       class="form-control"
+                                       autocomplete="current-password" required>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-2 justify-centent-center text-center">
+                            <input class="btn bg-dark yellowFont rounded-pill" type="submit" value="Se connecter" />
+                        </div>
+
+                        <input type="hidden" name="_csrf_token"
+                               value="{{ csrf_token('authenticate') }}"
+                        >
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
