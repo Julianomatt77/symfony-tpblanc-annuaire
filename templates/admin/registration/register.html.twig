@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}} - Ajout employé{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un employé</h1>
+
+    <div class="d-flex justify-content-center">
+        <a class="btn bg-dark yellowFont " href="{{ path('admin') }}">Retour à la liste des employés</a>
+    </div>
+
+    <section id="signUp" class="vh-100">
+        <div class="container py-5 h-100">
+            <h2 class="pt-0">Création de mon compte</h2>
+
+            <div class="row justify-content-center h-100">
+                <div class="col-12 col-lg-9 col-xl-7">
+                    <div class="card bg-light darkGreen" style="border-radius: 50px;">
+                        <div class="card-body p-4 p-md-5">
+                            {{ form_start(registrationForm) }}
+
+                            <div class="d-flex justify-content-evenly"><!--Prénom + nom-->
+                                <div class="col-md-4 mb-4">
+                                    <div class="form-outline">
+                                        {{ form_row(registrationForm.firstname) }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-4">
+                                    <div class="form-outline">
+                                        {{ form_row(registrationForm.lastname) }}
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center"><!--Date naissance + phone-->
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        {{ form_row(registrationForm.email) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-evenly"> <!--password-->
+                                <div class=" mb-4">
+                                    <div class="form-outline ">
+                                        {{ form_row(registrationForm.plainPassword.first) }}
+                                    </div>
+                                </div>
+                                <div class=" mb-4">
+                                    <div class="form-outline">
+                                        {{ form_row(registrationForm.plainPassword.second) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-center"><!--Date naissance + phone-->
+                                <div class="mb-4">
+                                    <div class="form-outline">
+                                        {{ form_row(registrationForm.department) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center"><!--Date naissance + phone-->
+                                <div class=" mb-4">
+                                    <div class="form-outline">
+                                        {{ form_row(registrationForm.picture) }}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="mt-4 pt-2 d-flex justify-content-center">
+                                {{ form_widget(registrationForm.submit, {
+                                    'label': "Ajouter un employé"}) }}
+                            </div>
+
+                            {{ form_row(registrationForm._token) }}
+                            {{ form_rest(registrationForm) }}
+                            {{ form_end(registrationForm, {'render_rest': false}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{#    {{ form_start(registrationForm) }}#}
+{#        {{ form_row(registrationForm.email) }}#}
+{#        {{ form_row(registrationForm.plainPassword, {#}
+{#            label: 'Password'#}
+{#        }) }}#}
+
+{#        <button type="submit" class="btn">Register</button>#}
+{#    {{ form_end(registrationForm) }}#}
+{% endblock %}

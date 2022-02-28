@@ -14,14 +14,17 @@
 {% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_logout') }}"> Me déconnecter</a>
-    {% if app.user and app.user.hasRole('ROLE_ADMIN') %}
-        <div class="col-1 text-center icons">
-            <a href="{{ path('admin') }}">Accès admin</a>
-        </div>
-    {% endif %}
+    <div class="d-flex justify-content-evenly mt-3">
+        {% if app.user and app.user.hasRole('ROLE_ADMIN') %}
+            <a class="btn bg-dark yellowFont" href="{{ path('admin') }}">Accès admin</a>
+        {% endif %}
+        {#    <a href="{{ path('change_password', {'id': app.user.id}) }}"> Changer mon mdp</a>#}
+        <a class="btn btn-danger" href="{{ path('app_logout') }}"> Me déconnecter</a>
 
-    <h4 class="text-center">Bonjour {{ app.user.firstname }} {{ app.user.lastname }}</h4>
+    </div>
+
+
+    <h4 class="text-center mt-4">Bonjour {{ app.user.firstname }} {{ app.user.lastname }}</h4>
 
     <h1 class="mt-3">Annuaire des employés</h1>
 

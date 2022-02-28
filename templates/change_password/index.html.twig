@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}} - Modification mdp{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un employé</h1>
+
+    <div class="d-flex justify-content-center">
+        <a class="btn bg-dark yellowFont " href="{{ path('default') }}">Retour à la liste des employés</a>
+    </div>
+
+    <section id="signUp" class="vh-100">
+        <div class="container py-5 h-100">
+            <h2 class="pt-0">Modification de mon mot de passe</h2>
+
+            <div class="row justify-content-center h-100">
+
+                <div class="col-12 col-lg-9 col-xl-7">
+                    <div class="card bg-light darkGreen" style="border-radius: 50px;">
+
+                        <form class="card-body p-4 p-md-5">
+{#                            {% if error %}#}
+{#                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
+{#                            {% endif %}#}
+
+{#                            {% if app.user %}#}
+{#                                <div class="mb-3">#}
+{#                                    Vous êtes connectés en tant que {{ app.user.email }}, <a href="{{ path('app_logout') }}">Logout</a>#}
+{#                                </div>#}
+{#                            {% endif %}#}
+                            {{ form_start(changePasswordForm) }}
+
+                            <div class="d-flex justify-content-evenly"> <!--password-->
+                                <div class=" mb-4">
+                                    <div class="form-outline ">
+                                        {{ form_row(changePasswordForm.plainPassword.first) }}
+                                    </div>
+                                </div>
+                                <div class=" mb-4">
+                                    <div class="form-outline">
+                                        {{ form_row(changePasswordForm.plainPassword.second) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 pt-2 d-flex justify-content-center">
+                                {{ form_widget(changePasswordForm.submit) }}
+                            </div>
+
+                            {{ form_row(changePasswordForm._token) }}
+{#                            {{ form_rest(changePasswordForm) }}#}
+                            {{ form_end(changePasswordForm, {'render_rest': false}) }}
+
+{#                            <input type="hidden" name="_csrf_token"#}
+{#                                   value="{{ csrf_token('authenticate') }}"#}
+{#                            >#}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {#    {{ form_start(registrationForm) }}#}
+    {#        {{ form_row(registrationForm.email) }}#}
+    {#        {{ form_row(registrationForm.plainPassword, {#}
+    {#            label: 'Password'#}
+    {#        }) }}#}
+
+    {#        <button type="submit" class="btn">Register</button>#}
+    {#    {{ form_end(registrationForm) }}#}
+{% endblock %}

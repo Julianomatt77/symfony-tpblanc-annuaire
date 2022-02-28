@@ -14,12 +14,19 @@
 {% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_logout') }}"> Me déconnecter</a>
-    <a href="{{ path('default') }}">Retour site employé</a>
+    <div class="d-flex justify-content-evenly mt-3">
+        <a class="btn bg-dark yellowFont" href="{{ path('default') }}">Retour site employé</a>
+        <a class="btn btn-info" href="{{ path('register') }}">Ajouter un employé</a>
+        <a class="btn btn-danger" href="{{ path('app_logout') }}"> Me déconnecter</a>
 
-    <h4 class="text-center">Bonjour {{ app.user.firstname }} {{ app.user.lastname }}</h4>
+        {#    <a href="{{ path('change_password', {'id': app.user.id}) }}"> Changer mon mdp</a>#}
+    </div>
+
+
+    <h4 class="text-center mt-4">Bonjour {{ app.user.firstname }} {{ app.user.lastname }}</h4>
 
     <h1 class="mt-3">Annuaire des employés</h1>
+
 
     <table id="datatablesSimple" class="table text-center table-striped">
         <thead>
@@ -40,7 +47,11 @@
                 <td>{{ user.lastname }}</td>
                 <td><img src="../images/{{ user.picture }}" style="height: 80px; width: 80px"></td>
                 <td>{{ user.department }}</td>
-                <td>Actions</td>
+                <td>
+                    <div class="my-1">
+                        {{ include('admin/admin_user/_delete_form.html.twig') }}
+                    </div>
+                </td>
             </tr>
         {% else %}
             <tr>
