@@ -18,7 +18,7 @@ class DefaultController extends AbstractController
     }
 
     #[Route('/', name: 'default')]
-    #[IsGranted('ROLE_USER')]
+//    #[IsGranted('ROLE_USER')]
     public function index(): Response
     {
         $users = $this->userRepository->findAll();
